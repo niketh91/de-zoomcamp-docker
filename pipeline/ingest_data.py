@@ -47,10 +47,12 @@ def run():
     pg_db = 'ny_taxi'
     chunksize = 100000
     target_table = 'yellow_taxi_data'
+    year = 2021
+    month = 1
 
     prefix = 'https://github.com/DataTalksClub/nyc-tlc-data/releases/download/yellow/'
 
-    url = f'{prefix}yellow_tripdata_2021-01.csv.gz'
+    url = f'{prefix}yellow_tripdata_{year}-{month:02d}.csv.gz'
      
     engine = create_engine(f'postgresql://{pg_user}:{pg_pass}@{pg_host}:{pg_port}/{pg_db}')
 
