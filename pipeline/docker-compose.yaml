@@ -1,14 +1,16 @@
 services:
   pgdatabase:
-    image: postgres:18
+    image: postgres:18 #Think of this like downloading a prebuilt Postgres machine.
     environment:
       POSTGRES_USER: "root"
       POSTGRES_PASSWORD: "root"
       POSTGRES_DB: "ny_taxi"
     volumes:
-      - "ny_taxi_postgres_data:/var/lib/postgresql"
+      - "ny_taxi_postgres_data:/var/lib/postgresql" 
+      #Store Postgres data in a safe place called ny_taxi_postgres_data so it survives restarts
+      #/var/lib/postgresql is where Postgres keeps its data inside the container.
     ports:
-      - "5432:5432"
+      - "5432:5432" #ComputerPort:ContainerPort
 
   pgadmin:
     image: dpage/pgadmin4
@@ -16,12 +18,10 @@ services:
       PGADMIN_DEFAULT_EMAIL: "admin@admin.com"
       PGADMIN_DEFAULT_PASSWORD: "root"
     volumes:
-      - "pgadmin_data:/var/lib/pgadmin"
+      - "pgadmin_data:/var/lib/pgadmin" #Store pgAdmin data in a safe place called pgadmin_data so it survives restarts
     ports:
       - "8085:80"
 
-
-
-volumes:
+volumes: #Please create the below named storage areas
   ny_taxi_postgres_data:
   pgadmin_data:
